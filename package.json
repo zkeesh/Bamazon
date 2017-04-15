@@ -1,0 +1,28 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zkeesh/Bamazon.git"
+  },
+  "keywords": [
+    "bamazon",
+    "databases",
+    "node",
+    "git"
+  ],
+  "author": "Zachary Keeshin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zkeesh/Bamazon/issues"
+  },
+  "dependencies": {
+    "inquirer": "^3.0.6",
+    "mysql": "^2.13.0"
+  }
+}
