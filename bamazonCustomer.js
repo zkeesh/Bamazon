@@ -15,7 +15,6 @@ var connection = mysql.createConnection({
 });
 
 
-
 // connection.connect(function(err) {
 //   if (err) throw err;
 //   console.log("connected as id " + connection.threadId);
@@ -25,11 +24,13 @@ var printProducts = function() {
 	connection.query("SELECT * FROM products", function(err, res) {
 	  if (err) throw err;
 	  // console.log(res);
-	  console.log(typeof res);
 	  for(var i = 0; i < res.length; i++) {
 	  	console.log(res[i].item_id + " | " + res[i].product_name + " | " + res[i].price);
+	 	console.log(res[i].stock_quantity);
 	  }
 	  console.log("-----------------------------------");
+
+
 
 	  ///
 	  getUserInput();
@@ -53,14 +54,41 @@ var getUserInput = function() {
 			name: "id",
 			type: "input",
 			message: "What's the ID of the product you'd like to buy?"
+		},
+		{
+			name: "numUnits",
+			type: "input",
+			message: "How many units would you like to buy?"
 		}
 	]).then(function(answer){
-		console.log(answer);
+
+		// console.log(answer.id);
+		console.log("=========");
+
+		connection.query( "SELECT * FROM products", function(err, res) {
+			if (err) throw err;
+
+
+			console.log(res[answer.id - 1]);
+
+			if(answer.numUnits < res[answer.id - 1].stock_quantity){
+				console.log("You're allowed to buy that many!");
+			}else{
+				console.log("Insufficient quantity");
+			}
+
+
+		})
+	  
+
+		// console.log(response);
+		// see how many units exist for a given product
+		// if the quantity requested < quantity available
+				// then let them buy it and fulfill the order
+
 	});
 
 }
-
-
 
 
 
